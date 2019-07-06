@@ -1,0 +1,20 @@
+<div id="about">
+  <p>性格投票箱はあなたの性格をみんなに投票で教えてもらうサービスです。</p>
+  <p>ほかのユーザーはあなたがどんな人間なのか、どんな性格なのかを性格特性欄から匿名で投票することができます。</p>
+  <p>そして、すべての投票を集計しあなたがどんな人間なのかを客観的に把握することができます。</p>
+  <p>もちろん、投票をリセットして０からやり直すこともボタン一つで簡単にできます。</p>
+  <% if not user_signed_in? %>
+    <div id="btns">
+      <%= link_to "ログイン", login_get_path, class: "btn" %>
+      <%= link_to "新規登録", signup_get_path, class: "btn" %>
+    </div>
+  <% else %>
+    <div id="btns">
+      <%= link_to "マイ投票箱", user_path(current_user.id), class: "btn" %>
+    </div>
+  <% end %>
+</div>
+
+<%# アドセンス広告=>レクタングル大 %>
+<%= render "home/adsense" %>
+

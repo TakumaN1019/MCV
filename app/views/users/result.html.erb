@@ -1,0 +1,51 @@
+<% content_for :title do %>
+  <%= "#{@user.name}さんの性格投票の結果 | 性格投票箱" %>
+<% end %>
+<% content_for :share_title do %>
+  <%= "タップして#{@user.name}さんの性格を見る | 性格投票箱" %>
+<% end %>
+
+<%# アドセンス広告=>レクタングル大 %>
+<%= render "home/adsense" %>
+
+<div id="result">
+  <%= link_to "投票ページへもどる", user_path(@user.id), id:"back_btn" %>
+
+  <h1><%= @user.name if @user.name.present? %><%= "ななし" if not @user.name.present? %>さんの性格</h1>
+  <p>投票数： <%= @sum %></p>
+
+  <div id="bar_chart">
+    <div class="bar"><div class="back" style="width:<%= @s01 %>%;"></div><div class="status" style="<%= 'color:white;' if @s01.to_i >= 43 %>">やさしい <%= @s01.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s02 %>%;"></div><div class="status" style="<%= 'color:white;' if @s02.to_i >= 43 %>">かしこい <%= @s02.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s03 %>%;"></div><div class="status" style="<%= 'color:white;' if @s03.to_i >= 43 %>">おもしろい <%= @s03.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s04 %>%;"></div><div class="status" style="<%= 'color:white;' if @s04.to_i >= 43 %>">まじめ <%= @s04.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s05 %>%;"></div><div class="status" style="<%= 'color:white;' if @s05.to_i >= 43 %>">かっこいい <%= @s05.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s06 %>%;"></div><div class="status" style="<%= 'color:white;' if @s06.to_i >= 43 %>">かわいい <%= @s06.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s07 %>%;"></div><div class="status" style="<%= 'color:white;' if @s07.to_i >= 43 %>">チャラい <%= @s07.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s08 %>%;"></div><div class="status" style="<%= 'color:white;' if @s08.to_i >= 43 %>">天然 <%= @s08.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s09 %>%;"></div><div class="status" style="<%= 'color:white;' if @s09.to_i >= 43 %>">サイコパス <%= @s09.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s10 %>%;"></div><div class="status" style="<%= 'color:white;' if @s10.to_i >= 43 %>">頭がおかしい <%= @s10.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s11 %>%;"></div><div class="status" style="<%= 'color:white;' if @s11.to_i >= 43 %>">几帳面 <%= @s11.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s12 %>%;"></div><div class="status" style="<%= 'color:white;' if @s12.to_i >= 43 %>">ツンデレ <%= @s12.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s13 %>%;"></div><div class="status" style="<%= 'color:white;' if @s13.to_i >= 43 %>">おとなしい <%= @s13.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s14 %>%;"></div><div class="status" style="<%= 'color:white;' if @s14.to_i >= 43 %>">テンション高い <%= @s14.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s15 %>%;"></div><div class="status" style="<%= 'color:white;' if @s15.to_i >= 43 %>">努力家 <%= @s15.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s16 %>%;"></div><div class="status" style="<%= 'color:white;' if @s16.to_i >= 43 %>">S <%= @s16.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s17 %>%;"></div><div class="status" style="<%= 'color:white;' if @s17.to_i >= 43 %>">M <%= @s17.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s18 %>%;"></div><div class="status" style="<%= 'color:white;' if @s18.to_i >= 43 %>">天才 <%= @s18.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s19 %>%;"></div><div class="status" style="<%= 'color:white;' if @s19.to_i >= 43 %>">怒ると怖い <%= @s19.round(1) %>%</div></div>
+    <div class="bar"><div class="back" style="width:<%= @s20 %>%;"></div><div class="status" style="<%= 'color:white;' if @s20.to_i >= 43 %>">変態 <%= @s20.round(1) %>%</div></div>
+  </div>
+
+
+  <% if user_signed_in? %>
+    <% if current_user?(@user) %>
+      <%= link_to "投票結果をリセットする", reset_path(@user.id), data: { confirm: "ほんとに投票結果をリセットしてもいいですか？" }, method: :post, id:"reset_btn" %>
+    <% end %>
+  <% end %>
+
+</div>
+
+<%# アドセンス広告=>レクタングル大 %>
+<%= render "home/adsense" %>
+

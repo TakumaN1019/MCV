@@ -1,0 +1,55 @@
+<% content_for :title do %>
+  <%= "#{@user.name} | 性格投票箱" %>
+<% end %>
+<% content_for :share_title do %>
+  <%= "タップして#{@user.name}さんの性格を投票する | 性格投票箱" %>
+<% end %>
+
+<div id="user">
+  <% if @user.image? %>
+    <%= image_tag @user.image.url, id:"image" %>
+  <% else %>
+    <%= image_tag "https://my-character-vote.s3-ap-northeast-1.amazonaws.com/base/baby.png", id:"image" %>
+  <% end %>
+
+  <h2 id="name"><%= @user.name if @user.name.present? %><%= "ななし" if not @user.name.present? %></h2>
+  <% if user_signed_in? %>
+    <% if current_user?(@user) %>
+      <%= link_to "プロフィールを編集", edit_user_path(current_user.id), id:"edit_btn" %><br>
+      <%= link_to "http://twitter.com/share?url=#{@url}&text=#{@user.name}さんの性格投票箱はこちら%0a %20%23性格投票箱%0a %20%23匿名で知り合いの性格を投票しよう", id:"share_btn", target:"_blank" do %><i class="fab fa-twitter"></i> つぶやく<% end %><br>
+      <%= link_to "投票結果を見る", result_path(@user.id), id:"result_link" %>
+    <% end %>
+  <% end %>
+</div>
+
+<%# アドセンス広告=>レクタングル大 %>
+<%= render "home/adsense" %>
+
+<div id="vote">
+  <p><%= @user.name if @user.name.present? %><%= "ななし" if not @user.name.present? %>さんの印象を１つ選んで投票してください。<br>
+     この投票は匿名で行われますので正直にどうぞ！</p>
+  <%= link_to "やさしい", vote_path(@user.id, "01"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "かしこい", vote_path(@user.id, "02"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "おもしろい", vote_path(@user.id, "03"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "まじめ", vote_path(@user.id, "04"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "かっこいい", vote_path(@user.id, "05"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "かわいい", vote_path(@user.id, "06"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "チャラい", vote_path(@user.id, "07"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "天然", vote_path(@user.id, "08"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "サイコパス", vote_path(@user.id, "09"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "頭がおかしい", vote_path(@user.id, "10"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "きちょうめん", vote_path(@user.id, "11"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "ツンデレ", vote_path(@user.id, "12"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "おとなしい", vote_path(@user.id, "13"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "テンション高い", vote_path(@user.id, "14"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "がんばりや", vote_path(@user.id, "15"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "S", vote_path(@user.id, "16"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "M", vote_path(@user.id, "17"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "天才", vote_path(@user.id, "18"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "怒ると怖い", vote_path(@user.id, "19"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+  <%= link_to "変態", vote_path(@user.id, "20"), data: { confirm: "投票しますか？" }, method: :post, class:"btn" %>
+</div>
+
+<%# アドセンス広告=>レクタングル大 %>
+<%= render "home/adsense" %>
+
